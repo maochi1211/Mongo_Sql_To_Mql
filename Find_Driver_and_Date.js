@@ -1,5 +1,3 @@
-
-
 use('Demo');
 
 var currentDate = new Date();
@@ -18,37 +16,22 @@ result = db.CutDateTransform_Record.find(
         end_time: "$CutDateEndTime",
         CutDay: 1
     }
-)
+);
 
 var cnt = 0;
 var driver_senvendays_list = [];
+
+console.log('finding each driver seven days record...');
+
 result.forEach(function(item) {
     cnt++;
     result = findDriverAndDate(item.CutDay, item.driver_id);
-    driver_senvendays_list.push(result);
-    console.log('cnt:', cnt);
+    driver_senvendays_list.push(result); 
 });
 
+console.log('Total number of driver ID:', cnt);
+console.log('Driver seven days record:', driver_senvendays_list[0]);
 
-const fs = require('fs');
-
-let bigObject = {};
-
-driver_senvendays_list.forEach((element, i) => {
-    element.forEach((item, j) => {
-        console.log('item:', item);
-    });    
-});
-
-let json = JSON.stringify(bigObject);
-
-console.log('json:', json);
-// fs.writeFile('output.json', json, function(error) {
-//     if (error) throw error;
-//     console.log('Saved to output.json');
-// });
-
-  
 
 function findDriverAndDate(cutDayValue, driverIdValue) {
     return db.CutDateTransform_Record.find(
