@@ -27,11 +27,12 @@ result.forEach(function(item) {
     cnt++;
     result = findDriverAndDate(item.CutDay, item.driver_id);
     driver_senvendays_list.push(result); 
+    // result.forEach(printjson);
 });
 
 console.log('Total number of driver ID:', cnt);
 console.log('Driver seven days record:', driver_senvendays_list[0]);
-
+console.log('Total number of driver seven days record:', totalResult);
 
 function findDriverAndDate(cutDayValue, driverIdValue) {
     return db.CutDateTransform_Record.find(
