@@ -1,4 +1,6 @@
 ## Demo SQL to MQL 
+- 教學文:https://hackmd.io/lEVqH0rQQoyKRkDZFWd1uA?view
+
 ### 給定日期，找到各司機在此日期前七天的實際工時。
 #### 
 - 原先在 PostgreSQL 中，存成兩張 Table 且執行 2~3 個 Qeury 完成查詢。
