@@ -14,7 +14,7 @@
 
 ## 環境與資料準備 
 
-Docker Version: 4.25.0
-Mongo DB Relational Migrator Version: 1.11.0
-PostgreSQL Version : 17.2
-Mongo Atlas Version: 8.0.4
+- Docker Version: 4.25.0
+- Mongo DB Relational Migrator Version: 1.11.0
+- PostgreSQL Version : 17.2
+- Mongo Atlas Version: 8.0.4
