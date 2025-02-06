@@ -1,27 +1,27 @@
-CREATE DATABASE IF NOT EXISTS DEMO;
-use Demo;
+-- 創建 cutdatetransform_record_new 表
+CREATE TABLE IF NOT EXISTS cutdatetransform_record_new (
+    id SERIAL PRIMARY KEY,  
+    driver_id VARCHAR(10) NOT NULL,  
+    cutday TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    cutdatestarttime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    cutdateendtime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    drive_time INT NOT NULL
+);
 
--- Table structure for table `users`
-CREATE TABLE IF NOT EXISTS `CutDateTransform_Record_New` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `driver_id` varchar(10) NOT NULL,
-  `CutDay` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `CutDateStartTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `CutDateEndTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `drive_time` int(8) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `idx_driver_id` (`driver_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+-- **建立索引（這裡正確使用 CREATE INDEX）**
+CREATE INDEX idx_driver_id ON cutdatetransform_record_new(driver_id);
 
--- Table structure for table `posts`
-CREATE TABLE IF NOT EXISTS `track_record3_new` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `real_drive` varchar(10) NOT NULL,
-  `time_day` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `start_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `end_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `drive_time` int(8) NOT NULL,
-  `mile` double NOT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `track_record3_new` FOREIGN KEY (`real_drive`) REFERENCES `CutDateTransform_Record`(`driver_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
+-- 創建 track_record3_new 表
+CREATE TABLE IF NOT EXISTS track_record3_new (
+  id BIGSERIAL PRIMARY KEY,  -- 使用 BIGSERIAL 代替 AUTO_INCREMENT
+  real_drive VARCHAR(10) NOT NULL,
+  time_day TIMESTAMP NOT NULL DEFAULT NOW(),
+  start_time TIMESTAMP NOT NULL DEFAULT NOW(),
+  end_time TIMESTAMP NOT NULL DEFAULT NOW(),
+  drive_time INTEGER NOT NULL,
+  mile DOUBLE PRECISION NOT NULL,
+  CONSTRAINT fk_track_record_real_drive
+    FOREIGN KEY (real_drive) REFERENCES CutDateTransform_Record_New(driver_id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
