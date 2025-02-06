@@ -1,8 +1,8 @@
 ## Demo SQL to MQL 
-### 給定日期，找到各司機在此日期的前七天實際工時。
+### 給定日期，找到各司機在此日期前七天的實際工時。
 #### 
-- 在 PostgreSQL 中，原儲存成兩張 Table 並且執行 2~3 個 Qeury 完成任務。
-- 在 Mongo DB 中，可以合併儲存成一個 Collection，用一個 Aggregate 完成。
+- 原先在 PostgreSQL 中，存成兩張 Table 且執行 2~3 個 Qeury 完成查詢。
+- 轉至 Mongo DB 中，合併存成一個 Collection，用一個 Aggregate 完成查詢。
 ### =========
 ## 步驟
 1. 創建一個容器化的 PostgreSQL 資料庫並 Insert 模擬資料
